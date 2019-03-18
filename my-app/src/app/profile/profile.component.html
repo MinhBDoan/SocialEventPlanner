@@ -1,0 +1,37 @@
+<h1>Profile</h1>
+
+<ul *ngIf="user">
+  <li>{{ user.fullname }}</li>
+  <li>{{ user.email }}</li>
+  <li>{{ user.password }}</li>
+</ul>
+
+<form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+  <h5 *ngIf="success">Your form is valid</h5>
+  <label>
+    Full Name:
+    <input type="text" formControlName="fullname">
+    <div *ngIf="submitted && editUserForm.controls.fullname.errors" class="error">
+      <div *ngIf="editUserForm.controls.fullname.errors.required">Your fullname is required</div>
+    </div>
+  </label>
+<label>
+  Email:
+  <input type="text" formControlName="email">
+  <div *ngIf="submitted && editUserForm.controls.email.errors" class="error">
+    <div *ngIf="editUserForm.controls.email.errors.required">Your email is required</div>
+  </div>
+</label>
+
+<label>
+    Password:
+    <textarea formControlName="password"></textarea>
+    <div *ngIf="submitted && editUserForm.controls.password.errors" class="error">
+      <div *ngIf="editUserForm.controls.password.errors.required">Your password is required</div>
+    </div>
+  </label>
+  <input type="submit" value="Update" routerLink="/home" class="cta">
+
+
+
+</form>

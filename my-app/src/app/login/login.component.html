@@ -1,0 +1,38 @@
+<h1>Login Here</h1>
+
+<div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+  <h5 *ngIf="success">Your form is valid</h5>
+<label>
+  Email:
+  <input type="text" formControlName="email">
+  <div *ngIf="submitted && loginForm.controls.email.errors" class="error">
+    <div *ngIf="loginForm.controls.email.errors.required">Your email is required</div>
+  </div>
+</label>
+
+<label>
+    Password:
+    <textarea formControlName="password"></textarea>
+    <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+      <div *ngIf="loginForm.controls.password.errors.required">A password is required</div>
+    </div>
+  </label>
+
+<input type="submit" value="Login" routerLink="api/home" class="cta">
+
+
+<span routerLink="api/register" >Need to Register?</span>
+
+</form>
+
+</div>
+
+<div *ngIf="submitted" class="results">
+  <strong>Username:</strong>
+  <span>{{ loginForm.controls.username.value }}</span>
+
+  <strong>Password:</strong>
+  <span>{{ loginForm.controls.password.value }}</span>
+</div>
